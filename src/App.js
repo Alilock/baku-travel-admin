@@ -14,8 +14,6 @@ function App() {
 
       <Routes>
         <Route path='/' element={<MainLayout />}>
-
-
           <Route path='places' element={<PlaceList />}></Route>
           <Route path='/places/add' element={<Add />}></Route>
         </Route>
