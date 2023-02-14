@@ -10,13 +10,25 @@ function Add() {
 
 
     const addNewPlace = (values) => {
+        var form_data = new FormData();
 
-        console.log('Values ', values);
-        // baseNetwork.add('places', values)
-        //     .then(res => {
-        //         console.log('Res ', res);
-        //         alert('Success!!')
-        //     })
+        for (let i = 0; i < values.images.length; i++) {
+            form_data.append("images", values.images[i]);
+        }
+
+        form_data.append("mainImg", values.mainImg[0]);
+        form_data.append("name",values.name);
+        form_data.append("description",values.description);
+        form_data.append("latitude",values.latitude);
+        form_data.append("longitude",values.longitude);
+        form_data.append("openDate",values.openDate);
+        form_data.append("closeDate",values.closeDate);
+      
+        baseNetwork.add('places', form_data)
+            .then(res => {
+                console.log('Res ', res);
+                alert('Success!!')
+            })
 
     }
 

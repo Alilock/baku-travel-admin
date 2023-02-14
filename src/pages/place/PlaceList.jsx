@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { baseNetwork } from '../../api/baseNetwork';
+import { Avatar } from '@mui/material';
 
 
 function PlaceList() {
@@ -32,7 +33,7 @@ function PlaceList() {
       <table>
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Open Date</th>
             <th>End Date</th>
@@ -42,15 +43,19 @@ function PlaceList() {
         <tbody>
           {
             places && places.map(item => {
-              return <tr key={item._id}>
-                <td>{item._id}</td>
+              return (
+                <tr key={item._id}>
+                  <td>
+                    <Avatar src={item.mainImage} alt='Data'/>
+                  </td>
+                {/* <td>{item._id}</td> */}
                 <td>{item.name}</td>
                 <td>{item.openDate}</td>
                 <td>{item.closeDate}</td>
                 <td><button onClick={() => deletePlace(item._id)}>Delete</button></td>
 
               </tr>
-            })
+            )})
           }
         </tbody>
 
