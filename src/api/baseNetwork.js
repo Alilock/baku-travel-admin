@@ -22,6 +22,9 @@ export const baseNetwork = {
             .then(res => {
                 responseData = res.data;
             })
+            .catch(err => {
+                throw err
+            })
 
         return responseData;
 
@@ -32,6 +35,9 @@ export const baseNetwork = {
         await axiosInstance.delete(url + "/" + id)
             .then(res => {
                 responseData = res.data;
+            })
+            .catch(err => {
+                throw err;
             })
 
         return responseData;
