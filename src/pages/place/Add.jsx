@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
 import { baseNetwork } from '../../api/baseNetwork';
-
+import { InputLabel, TextField } from '@mui/material';
 
 
 function Add() {
@@ -11,7 +11,7 @@ function Add() {
 
     const addNewPlace = (values) => {
 
-      
+
         // baseNetwork.add('places', values)
         //     .then(res => {
         //         console.log('Res ', res);
@@ -24,24 +24,19 @@ function Add() {
         <form onSubmit={handleSubmit(addNewPlace)}>
 
             <div>
-                <label>Name:</label>
-                <input type="text" {...register("name")} required />
+                <TextField type="text" label="Name"  {...register("name")} required />
             </div>
             <div>
-                <label>Description:</label>
-                <input type="text" {...register("description")} />
+                <TextField type="text" label="Description" {...register("description")} />
             </div>
             <div>
-                <label>Latitude:</label>
-                <input type="text" {...register("latitude")} required />
+                <TextField type="text" label="Latitude" {...register("latitude")} required />
             </div>
             <div>
-                <label>Longitude:</label>
-                <input type="text" {...register("longitude")} required />
+                <TextField type="text" label='Longitude' {...register("longitude")} required />
             </div>
             <div>
-                <label>Open Date:</label>
-                <input type="time" {...register("openDate")} />
+                <TextField id="time" label="Open Date" type="time" inputProps={300} />
             </div>
             <div>
                 <label>Close Date:</label>

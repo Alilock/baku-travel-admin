@@ -1,3 +1,4 @@
+import './assets/libs/boxicons-2.1.1/css/boxicons.min.css'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
