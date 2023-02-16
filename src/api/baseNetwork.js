@@ -42,6 +42,20 @@ export const baseNetwork = {
 
         return responseData;
 
+    },
+    getById: async (url,id) => {
+
+        let responseData = {};
+        await axiosInstance.get(url + "/" + id)
+            .then(res => {
+                responseData = res.data;
+            })
+            .catch(err => {
+                throw err;
+            })
+
+        return responseData;
+
     }
 
 }

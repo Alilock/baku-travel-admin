@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Add from './pages/place/Add'
 import PlaceList from './pages/place/PlaceList'
 import MainLayout from './layout/MainLayout'
+import Detail from './pages/place/Detail'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<MainLayout />}>
           <Route path='places' element={<PlaceList />}></Route>
           <Route path='/places/add' element={<Add />}></Route>
+          <Route path='/places/:id' element={<Detail />}></Route>
         </Route>
       </Routes>
 

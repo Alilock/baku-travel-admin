@@ -1,21 +1,21 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
 import { baseNetwork } from '../../api/baseNetwork';
-import { Button, Grid, InputLabel, TextField } from '@mui/material';
+import { Button, Grid, Select, TextField , MenuItem , InputLabel } from '@mui/material';
 
 
 function Add() {
 
     const { register, handleSubmit } = useForm();
 
+    
 
     const addNewPlace = (values) => {
         var form_data = new FormData();
-
         for (let i = 0; i < values.images.length; i++) {
             form_data.append("images", values.images[i]);
         }
-
+        console.log(values)
         form_data.append("mainImg", values.mainImg[0]);
         form_data.append("name",values.name);
         form_data.append("description",values.description);
@@ -23,7 +23,8 @@ function Add() {
         form_data.append("longitude",values.longitude);
         form_data.append("openDate",values.openDate);
         form_data.append("closeDate",values.closeDate);
-      
+        form_data.append("category",values.category);
+        
         baseNetwork.add('places', form_data)
             .then(res => {
                 console.log('Res ', res);
@@ -45,6 +46,20 @@ function Add() {
                     <TextField fullWidth type="text" label="Description" {...register("description")} />
                 </Grid>
                 <Grid item xs={6}>
+                    <InputLabel id="demo-simple-select-error-label">Category</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-error-label"
+                        id="demo-simple-select-error"
+                        fullWidth
+                        name='category'
+                        {...register('category')}
+                        label="Category"
+                        required
+                    >
+                        <MenuItem value={"restaurant"}>Restaurant</MenuItem>
+                        <MenuItem value={"museum"}>Museum</MenuItem>
+                        <MenuItem value={"hotel"}>Hotel</MenuItem>
+                    </Select>
                 </Grid>
 
                 <Grid item xs={6}>
@@ -75,7 +90,6 @@ function Add() {
                 </Grid>
                 <Grid item xs={6}>
                     <Button type='submit' variant="contained" >Add</Button>
-
                 </Grid>
             </Grid>
         </form>
