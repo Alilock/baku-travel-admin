@@ -1,14 +1,14 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
 import { baseNetwork } from '../../api/baseNetwork';
-import { Button, Grid, Select, TextField , MenuItem , InputLabel } from '@mui/material';
+import { Button, Grid, Select, TextField, MenuItem, InputLabel } from '@mui/material';
 
 
 function Add() {
 
     const { register, handleSubmit } = useForm();
 
-    
+
 
     const addNewPlace = (values) => {
         var form_data = new FormData();
@@ -17,17 +17,16 @@ function Add() {
         }
         console.log(values)
         form_data.append("mainImg", values.mainImg[0]);
-        form_data.append("name",values.name);
-        form_data.append("description",values.description);
-        form_data.append("latitude",values.latitude);
-        form_data.append("longitude",values.longitude);
-        form_data.append("openDate",values.openDate);
-        form_data.append("closeDate",values.closeDate);
-        form_data.append("category",values.category);
-        
+        form_data.append("name", values.name);
+        form_data.append("description", values.description);
+        form_data.append("latitude", values.latitude);
+        form_data.append("longitude", values.longitude);
+        form_data.append("openDate", values.openDate);
+        form_data.append("closeDate", values.closeDate);
+        form_data.append("category", values.category);
+
         baseNetwork.add('places', form_data)
             .then(res => {
-                console.log('Res ', res);
                 alert('Success!!')
             })
 
@@ -46,7 +45,7 @@ function Add() {
                     <TextField fullWidth type="text" label="Description" {...register("description")} />
                 </Grid>
                 <Grid item xs={6}>
-                    <InputLabel id="demo-simple-select-error-label">Category</InputLabel>
+                    {/* <InputLabel id="demo-simple-select-error-label">Category</InputLabel> */}
                     <Select
                         labelId="demo-simple-select-error-label"
                         id="demo-simple-select-error"

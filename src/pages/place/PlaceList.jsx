@@ -75,6 +75,8 @@ function PlaceList() {
 
   return (
     <>
+    <Button onClick={() => navigate('/places/add')}>Add</Button>
+
       <div style={{ height: 300, width: '100%' }}>
         <DataGrid
           columns={placeColumns}
