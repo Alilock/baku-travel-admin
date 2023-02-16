@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { baseNetwork } from '../../api/baseNetwork';
-import { Avatar } from '@mui/material';
-
+import { Avatar, Button } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
+import { useNavigate, useNavigation } from 'react-router-dom';
 
 function PlaceList() {
 
   const [places, setplaces] = useState([]);
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     loadPlaces();
@@ -21,47 +24,67 @@ function PlaceList() {
   }
 
 
+  const goToDetail = (id) => {
+
+    navigate('/places/' + id);
+
+  }
+
+  //headerName -> column Title
+  //field -> item property
+  const placeColumns = [
+    { field: 'name', headerName: 'Name', width: 150 },
+    { field: 'openDate', headerName: 'Open Date', width: 150 },
+    { field: 'closeDate', headerName: 'Close Date', width: 150 },
+    {
+      field: 'Image', headerName: 'Main Image', width: 150,
+      renderCell: (data) => {
+        return (<img src={data.row.mainImage} />)
+      }
+    },
+    {
+      field: 'Detail',
+      headerName: 'Detail',
+      width: 150,
+      renderCell: (data) => {
+        return (<Button onClick={() => goToDetail(data.row._id)} variant="outlined" color="primary">
+          Go To Detail
+        </Button>)
+      }
+    },
+    {
+      headerName: 'Delete',
+      width: 150,
+      renderCell: (data) => {
+        return (<Button onClick={() => deletePlace(data.row._id)} variant="outlined" color="error">
+          Delete
+        </Button>)
+      }
+    },
+
+  ];
+
+
   const loadPlaces = () => {
     baseNetwork.getAll('/places')
       .then(res => {
+        console.log('places', res);
         setplaces(res);
       })
   }
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Open Date</th>
-            <th>End Date</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            places && places.map(item => {
-              return (
-                <tr key={item._id}>
-                  <td>
-                    <Avatar src={item.mainImage} alt='Data'/>
-                  </td>
-                {/* <td>{item._id}</td> */}
-                <td>{item.name}</td>
-                <td>{item.openDate}</td>
-                <td>{item.closeDate}</td>
-                <td><button onClick={() => deletePlace(item._id)}>Delete</button></td>
-
-              </tr>
-            )})
-          }
-        </tbody>
-
-      </table>
+      <div style={{ height: 300, width: '100%' }}>
+        <DataGrid
+          columns={placeColumns}
+          rows={places}
+          getRowId={(row) => row._id}
+        />
+      </div>
     </>
   )
 }
+
 
 export default PlaceList
