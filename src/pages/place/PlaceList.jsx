@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { baseNetwork } from '../../api/baseNetwork';
-import { Avatar, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate, useNavigation } from 'react-router-dom';
 
 function PlaceList() {
 
   const [places, setplaces] = useState([]);
+
+
 
   let navigate = useNavigate();
 
@@ -33,13 +35,14 @@ function PlaceList() {
   //headerName -> column Title
   //field -> item property
   const placeColumns = [
+
     { field: 'name', headerName: 'Name', width: 150 },
     { field: 'openDate', headerName: 'Open Date', width: 150 },
     { field: 'closeDate', headerName: 'Close Date', width: 150 },
     {
-      field: 'Image', headerName: 'Main Image', width: 150,
+      field: 'Image', headerName: 'Main Image', width: 130, 
       renderCell: (data) => {
-        return (<img src={data.row.mainImage} />)
+        return (<img  style={{width:50, height:50, textAlign:"center" ,alignItems:"center", justifyContent:"center",justifyItems:"center"}}src={data.row.mainImage} />)
       }
     },
     {
@@ -75,11 +78,14 @@ function PlaceList() {
 
   return (
     <>
+    <Button onClick={() => navigate('/places/add')}>Add</Button>
+
       <div style={{ height: 300, width: '100%' }}>
         <DataGrid
           columns={placeColumns}
           rows={places}
           getRowId={(row) => row._id}
+          checkboxSelection
         />
       </div>
     </>
