@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './scss/App.scss'
 import About from './pages/About'
@@ -8,8 +8,21 @@ import Add from './pages/place/Add'
 import PlaceList from './pages/place/PlaceList'
 import MainLayout from './layout/MainLayout'
 import Detail from './pages/place/Detail'
+import { runOneSignal } from './oneSignal'
+
 
 function App() {
+
+  useEffect(() => {
+    
+  
+    runOneSignal();
+    
+  }, [])
+  
+
+  
+
   return (
     <>
 
@@ -25,5 +38,7 @@ function App() {
 
   )
 }
+
+
 
 export default App
