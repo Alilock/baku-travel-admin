@@ -57,7 +57,10 @@ function PlaceList() {
       headerName: 'Main Image',
       width: 130,
       renderCell: data => {
-        return <img style={{ width: 50, height: 50 }} src={data.row.mainImage} />;
+        return <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
+
+          <img style={{ width: 50, height: 50 }} src={data.row.mainImage} />
+        </div>
       },
     },
     {
