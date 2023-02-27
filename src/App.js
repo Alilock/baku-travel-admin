@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
 
 
-    runOneSignal();
+    // runOneSignal();
 
   }, [])
 

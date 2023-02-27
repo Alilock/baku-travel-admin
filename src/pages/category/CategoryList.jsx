@@ -3,7 +3,6 @@ import { baseNetwork } from '../../api/baseNetwork';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
-
 function CategoryList() {
     const [categories, setCategories] = useState([]);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -13,7 +12,7 @@ function CategoryList() {
     useEffect(() => {
         loadCategories();
     }, []);
-
+    console.log(categories);
     const loadCategories = () => {
         baseNetwork.getAll('/categories').then(res => {
             setCategories(res);
