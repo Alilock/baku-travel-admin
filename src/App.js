@@ -10,18 +10,20 @@ import MainLayout from './layout/MainLayout'
 import Detail from './pages/place/Detail'
 import { runOneSignal } from './oneSignal'
 
+import CategoryList from './pages/category/CategoryList'
+import CategoryAdd from './pages/category/CategoryAdd'
 
 function App() {
 
   useEffect(() => {
-    
-  
-    runOneSignal();
-    
-  }, [])
-  
 
-  
+
+    runOneSignal();
+
+  }, [])
+
+
+
 
   return (
     <>
@@ -31,6 +33,8 @@ function App() {
           <Route path='places' element={<PlaceList />}></Route>
           <Route path='/places/add' element={<Add />}></Route>
           <Route path='/places/:id' element={<Detail />}></Route>
+          <Route path='/categories' element={<CategoryList />}></Route>
+          <Route path='/categories/add' element={<CategoryAdd />}></Route>
         </Route>
       </Routes>
 

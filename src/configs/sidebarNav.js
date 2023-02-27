@@ -11,6 +11,12 @@ const sidebarNav = [
         icon: <i class='bx bx-trip'></i>,
         text: 'Places'
     },
+    {
+        link: './categories',
+        section: 'categories',
+        icon: <i class='bx bx-category-alt'></i>,
+        text: 'Categories'
+    }
 
 ]
 
